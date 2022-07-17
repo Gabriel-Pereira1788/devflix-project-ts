@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Container } from "./GlobalStyles";
 //pages
@@ -13,9 +13,12 @@ import { useAuthContext } from "./contexts/AuthContext";
 //components
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-import { useEffect } from "react";
+import CardUser from "./components/CardUser/CardUser";
+
 function App() {
   const { user } = useAuthContext();
+
+  const [cardUserOn, setCardUserOn] = useState<boolean>(false);
 
   useEffect(() => {
     console.log(user);
@@ -23,13 +26,14 @@ function App() {
   return (
     <Container>
       <BrowserRouter>
-        <NavBar />
+        <NavBar setCardUserOn={setCardUserOn} />
+        {cardUserOn && <CardUser setCardUserOn={setCardUserOn} />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/favorites" element={user ? <Favorites /> : <Home />} />
+          <Route path="/login" element={!user ? <Login /> : <Home />} />
+          <Route path="/register" element={!user ? <Register /> : <Home />} />
           <Route path="/movie:id" element={<Movie />} />
         </Routes>
         <Footer />

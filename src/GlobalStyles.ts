@@ -22,6 +22,10 @@ const GlobalStyle = createGlobalStyle`
             color: #bbb;
         }
     }
+    p{
+        line-height: 30px;
+        letter-spacing: 1px;
+    }
     h1,h2,h3,h4,p,label{
         color: #fff;
         font-family: "Montserrat", sans-serif;
@@ -70,6 +74,12 @@ const GlobalStyle = createGlobalStyle`
     textarea::placeholder {
     
     font-family: "Montserrat", sans-serif;
+    }
+
+    button{
+        background:none;
+        color:#fff;
+        cursor: pointer;
     }
 
 `;
