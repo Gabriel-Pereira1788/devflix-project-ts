@@ -14,17 +14,22 @@ import { useAuthContext } from "./contexts/AuthContext";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import CardUser from "./components/CardUser/CardUser";
+import Loading from "./components/Loading/Loading";
 
 function App() {
   const { user } = useAuthContext();
-
   const [cardUserOn, setCardUserOn] = useState<boolean>(false);
 
+  const loadingUser: boolean = user === null;
   useEffect(() => {
     console.log(user);
   }, [user]);
+
+  if (loadingUser) {
+    return <Loading />;
+  }
   return (
-    <Container>
+    <Container FlexContent="space-between">
       <BrowserRouter>
         <NavBar setCardUserOn={setCardUserOn} />
         {cardUserOn && <CardUser setCardUserOn={setCardUserOn} />}
@@ -36,7 +41,6 @@ function App() {
           <Route path="/register" element={!user ? <Register /> : <Home />} />
           <Route path="/movie:id" element={<Movie />} />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </Container>
   );

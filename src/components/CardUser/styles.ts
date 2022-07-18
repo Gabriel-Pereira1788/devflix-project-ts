@@ -7,7 +7,7 @@ const ViewAnimation = keyframes`
 
 export const Card = styled.div`
   display: flex;
-  background-color: #000000f2;
+  background-color: #00000069;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;

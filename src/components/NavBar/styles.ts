@@ -4,9 +4,8 @@ const primaryColor: string = "red";
 const size: number = 25;
 
 export const Nav = styled.nav`
-  position: relative;
   width: 100%;
-  background-color: black;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,6 +33,7 @@ export const List = styled.ul`
   li {
     color: white;
     margin: 0em 2em;
+    font-weight: bold;
     .active {
       color: ${primaryColor};
     }

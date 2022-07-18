@@ -1,10 +1,21 @@
 import styled from "styled-components";
 
-export const Container = styled.section`
+export const MoviesSection = styled.section`
   width: 100%;
-  height: 100vh;
+  height: 556px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  overflow: hidden;
+  div {
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0px 20px;
+    &:hover {
+      transform: scale(1.2);
+    }
+    img {
+      border-radius: 10px;
+    }
+  }
 `;

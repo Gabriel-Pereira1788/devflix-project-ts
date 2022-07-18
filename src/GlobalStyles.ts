@@ -7,14 +7,18 @@ const GlobalStyle = createGlobalStyle`
         padding:0;
         box-sizing: border-box;
     }
+    html{
+        scroll-behavior: smooth;
+    }
     body{
-        height: 100vh;
+
+        min-height: 100vh;
         background-color: #000000f2;
         padding: 0;
         margin: 0;
         font-family: "Montserrat", sans-serif;
     }
-    a{
+    li,a{
         transition: all 0.3s;
         text-decoration: none;
         color: white;
@@ -22,11 +26,19 @@ const GlobalStyle = createGlobalStyle`
             color: #bbb;
         }
     }
+
+    ul{
+        list-style: none;
+        li{
+        
+            text-decoration:none
+        }
+    }
     p{
         line-height: 30px;
         letter-spacing: 1px;
     }
-    h1,h2,h3,h4,p,label{
+    h1,h2,h3,h4,p,label,li{
         color: #fff;
         font-family: "Montserrat", sans-serif;
     }
@@ -86,13 +98,17 @@ const GlobalStyle = createGlobalStyle`
 
 export default GlobalStyle;
 
-export const Container = styled.main`
+type PropsContainer = {
+  FlexContent: string;
+};
+
+export const Container = styled.main<PropsContainer>`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${(props) => props.FlexContent};
 `;
 
 export const ContainerForm = styled.section`

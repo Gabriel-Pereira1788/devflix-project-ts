@@ -1,16 +1,16 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 //styles
 import { ContainerInput } from "./styles";
 import { ContainerForm } from "../../GlobalStyles";
 //interface
 import { UserData, initialValue } from "../../interfaces/UserInterface";
+import { useAuthentication } from "../../hooks/useAuthentication";
 
-type Props = {};
-
-const Login = (props: Props) => {
+const Login = () => {
   const [userLogin, setUserLogin] = useState<UserData>(initialValue);
   const [messageError, setMessageError] = useState<string | null>(null);
+  const { loginAccount, loading, error } = useAuthentication();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserLogin((previewValue: any) => ({
@@ -19,11 +19,19 @@ const Login = (props: Props) => {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(userLogin);
     setMessageError(null);
+
+    await loginAccount(userLogin);
   };
+
+  useEffect(() => {
+    if (error) {
+      setMessageError(error);
+    }
+  }, [error]);
 
   return (
     <ContainerForm>
@@ -51,7 +59,11 @@ const Login = (props: Props) => {
             required
           />
         </ContainerInput>
-        <button>Entrar</button>
+        {loading ? (
+          <button disabled>Carregando...</button>
+        ) : (
+          <button>Entrar</button>
+        )}
         {messageError && <p>{messageError}</p>}
       </form>
     </ContainerForm>
