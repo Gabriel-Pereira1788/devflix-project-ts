@@ -2,13 +2,22 @@ import { useState } from "react";
 //context
 import { useAuthContext } from "../../contexts/AuthContext";
 //styles
-import { MoviesSection } from "./styles";
+import { Movie } from "./styles";
 import { Container } from "../../GlobalStyles";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
 //components
 import MoviePoster from "./MoviePoster/MoviePoster";
+
 //interface
 import { IDataMovie, ITmdb } from "../../interfaces/ApiInterface";
 import NavCategories from "./NavCategories/NavCategories";
+
+const responsive = {
+  0: { items: 1 },
+  600: { items: 2 },
+  1024: { items: 4 },
+};
 
 const Home = () => {
   const { homeList, randomData } = useAuthContext();
@@ -31,19 +40,19 @@ const Home = () => {
         />
       )}
       <NavCategories setMoviesByCategory={setMoviesByCategory} />
-      <MoviesSection>
+      <AliceCarousel responsive={responsive} infinite={true} autoHeight>
         {moviesByCategory &&
           moviesByCategory.list.results.map((movie, index) => (
-            <div key={index} onClick={() => setMoviePoster(movie)}>
+            <Movie key={index} onClick={() => setMoviePoster(movie)}>
               <a href="#main_poster">
                 <img
                   src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                   alt=""
                 />
               </a>
-            </div>
+            </Movie>
           ))}
-      </MoviesSection>
+      </AliceCarousel>
     </Container>
   );
 };
