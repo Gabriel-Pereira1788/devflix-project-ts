@@ -34,9 +34,3 @@ export interface ITmdb {
   vote_average: number;
   vote_count: number;
 }
-
-export interface IError {
-  success: boolean;
-  status_code?: number;
-  status_message?: string;
-}

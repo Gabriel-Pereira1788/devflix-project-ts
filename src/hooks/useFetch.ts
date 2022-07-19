@@ -1,6 +1,6 @@
 import { responsiveFontSizes } from "@mui/material";
 import { useEffect, useState } from "react";
-import { IError, ITmdb } from "../interfaces/IApi";
+import { ITmdb } from "../interfaces/IApi";
 
 export const useFetch = (id: string) => {
   const urlTvFind = `https://api.themoviedb.org/3/tv/${id}?api_key=caafc650f33fc68a6f16bf46a5c6ee13&language=en-US`;

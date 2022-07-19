@@ -8,9 +8,7 @@ import { Container } from "../../GlobalStyles";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 //components
-// import MoviePoster from "./MoviePoster/MoviePoster";
 import MoviePoster from "../../components/MoviePoster/MoviePoster";
-
 //interface
 import { IDataMovie, ITmdb } from "../../interfaces/IApi";
 import NavCategories from "./NavCategories/NavCategories";
@@ -22,14 +20,13 @@ const responsive = {
 };
 
 const Home = () => {
-  const { homeList, randomData } = useAuthContext();
+  const { randomData } = useAuthContext();
   const [moviePoster, setMoviePoster] = useState<ITmdb>(
     randomData!.randomMovie
   );
   const [moviesByCategory, setMoviesByCategory] = useState<IDataMovie>(
     randomData!.randomList
   );
-  console.log(homeList);
 
   return (
     <Container FlexContent="space-between" style={{ position: "absolute" }}>
@@ -46,7 +43,7 @@ const Home = () => {
         </MoviePoster>
       )}
       <NavCategories setMoviesByCategory={setMoviesByCategory} />
-      <AliceCarousel responsive={responsive} infinite={true} autoHeight>
+      <AliceCarousel responsive={responsive} infinite={true}>
         {moviesByCategory &&
           moviesByCategory.list.results.map((movie, index) => (
             <Movie key={index} onClick={() => setMoviePoster(movie)}>

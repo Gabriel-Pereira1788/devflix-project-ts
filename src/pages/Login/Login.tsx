@@ -21,9 +21,7 @@ const Login = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(userLogin);
     setMessageError(null);
-
     await loginAccount(userLogin);
   };
 

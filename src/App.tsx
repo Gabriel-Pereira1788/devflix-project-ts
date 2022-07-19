@@ -12,7 +12,6 @@ import Register from "./pages/Register/Register";
 import { useAuthContext } from "./contexts/AuthContext";
 //components
 import NavBar from "./components/NavBar/NavBar";
-import Footer from "./components/Footer/Footer";
 import CardUser from "./components/CardUser/CardUser";
 import Loading from "./components/Loading/Loading";
 
@@ -20,7 +19,7 @@ function App() {
   const { user } = useAuthContext();
   const [cardUserOn, setCardUserOn] = useState<boolean>(false);
 
-  const loadingUser: boolean = user === null;
+  const loadingUser: boolean = user === undefined;
   useEffect(() => {
     console.log(user);
   }, [user]);
