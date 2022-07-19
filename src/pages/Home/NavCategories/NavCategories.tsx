@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuthContext } from "../../../contexts/AuthContext";
-import { IDataMovie } from "../../../interfaces/ApiInterface";
+import { IDataMovie } from "../../../interfaces/IApi";
 import { Categories } from "./styles";
 type Props = {
   setMoviesByCategory: React.Dispatch<React.SetStateAction<IDataMovie>>;

@@ -34,12 +34,25 @@ export const WrapperInfo = styled.div`
   );
   padding: 20px;
   article {
-    max-width: 350px;
+    max-width: 400px;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
   }
+`;
+
+export const Title = styled.h1`
+  font-size: clamp(1.5em, 2.5vw, 2.5em);
+  color: red;
+  text-align: left;
+`;
+
+export const Overview = styled.p`
+  margin: 2rem 0;
+  text-shadow: 0px 3px 5px black;
+  font-size: clamp(0.5em, 1.5vw, 1em);
+  text-align: justify;
 `;

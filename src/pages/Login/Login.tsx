@@ -4,11 +4,11 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { ContainerInput } from "./styles";
 import { ContainerForm } from "../../GlobalStyles";
 //interface
-import { UserData, initialValue } from "../../interfaces/UserInterface";
+import { IUser, initialValue } from "../../interfaces/IUser";
 import { useAuthentication } from "../../hooks/useAuthentication";
 
 const Login = () => {
-  const [userLogin, setUserLogin] = useState<UserData>(initialValue);
+  const [userLogin, setUserLogin] = useState<IUser>(initialValue);
   const [messageError, setMessageError] = useState<string | null>(null);
   const { loginAccount, loading, error } = useAuthentication();
 

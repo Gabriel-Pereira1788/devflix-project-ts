@@ -1,4 +1,4 @@
-import { IDataMovie } from "../interfaces/ApiInterface";
+import { IDataMovie } from "../interfaces/IApi";
 
 const KEY: string = process.env.REACT_APP_TMDB_KEY!;
 const API_URL_BASE: string = "https://api.themoviedb.org/3";

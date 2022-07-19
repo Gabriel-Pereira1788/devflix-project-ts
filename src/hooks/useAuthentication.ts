@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 
 //interface
-import { UserData } from "../interfaces/UserInterface";
+import { IUser } from "../interfaces/IUser";
 
 export const useAuthentication = () => {
   const [error, setError] = useState<string | null>(null);
@@ -30,7 +30,7 @@ export const useAuthentication = () => {
     }
   }
 
-  const createUser = async (data: UserData) => {
+  const createUser = async (data: IUser) => {
     checkCancelled();
 
     setError(null);
@@ -64,7 +64,7 @@ export const useAuthentication = () => {
     signOut(auth);
   };
 
-  const loginAccount = async (data: UserData) => {
+  const loginAccount = async (data: IUser) => {
     checkCancelled();
     setLoading(true);
     setError(null);

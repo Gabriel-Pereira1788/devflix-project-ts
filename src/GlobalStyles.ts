@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: "Montserrat", sans-serif;
     }
     li,a{
+        text-shadow: 0px 3px 4px #00000059;
         transition: all 0.3s;
         text-decoration: none;
         color: white;
@@ -88,11 +89,28 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Montserrat", sans-serif;
     }
 
-    button{
-        background:none;
-        color:#fff;
-        cursor: pointer;
-    }
+   
+        button{
+            background-color: #850000;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 10px;
+            width: 120px;
+            font-weight: bold;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1em;
+            &:hover{
+                transition: all 0.4s;
+                background-color: red;
+                color: #fff;
+            }
+            &:disabled{
+                background-color: #aaa;
+            }
+        }
+    
 
 `;
 

@@ -7,9 +7,9 @@ import {
 } from "react";
 
 //context
-import { IContext, initialValueContext } from "../interfaces/ContextInterface";
+import { IContext, initialValueContext } from "../interfaces/IContext";
 //api
-import { IDataMovie, IRandomData } from "../interfaces/ApiInterface";
+import { IDataMovie, IRandomData } from "../interfaces/IApi";
 //Authentication
 import { useAuthentication } from "../hooks/useAuthentication";
 import { onAuthStateChanged, User } from "firebase/auth";

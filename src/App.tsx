@@ -39,7 +39,7 @@ function App() {
           <Route path="/favorites" element={user ? <Favorites /> : <Home />} />
           <Route path="/login" element={!user ? <Login /> : <Home />} />
           <Route path="/register" element={!user ? <Register /> : <Home />} />
-          <Route path="/movie:id" element={<Movie />} />
+          <Route path="/movie/:id" element={user ? <Movie /> : <Login />} />
         </Routes>
       </BrowserRouter>
     </Container>

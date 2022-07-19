@@ -1,5 +1,5 @@
 import { User } from "firebase/auth";
-import { IDataMovie, IRandomData } from "./ApiInterface";
+import { IDataMovie, IRandomData } from "./IApi";
 
 export interface IContext {
   user: User | null;
