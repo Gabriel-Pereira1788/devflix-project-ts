@@ -31,11 +31,18 @@ export const List = styled.ul`
   align-items: center;
   list-style: none;
   li {
+    display: block;
     color: white;
     margin: 0em 2em;
     font-weight: bold;
     .active {
       color: ${primaryColor};
+    }
+    a {
+      font-size: clamp(0.5em, 1.5vw, 1.5em);
+    }
+    @media screen and (max-width: 580px) {
+      display: none;
     }
   }
 `;
@@ -50,7 +57,20 @@ export const UserIcon = styled.li`
     margin-right: 10px;
     color: #999191f2;
   }
+
   &:hover {
     color: red;
+  }
+`;
+
+export const Toggle = styled.button`
+  display: none;
+  background: none;
+  &:hover {
+    background: none;
+    color: red;
+  }
+  @media screen and (max-width: 580px) {
+    display: block;
   }
 `;

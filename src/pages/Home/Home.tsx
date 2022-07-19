@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 //context
 import { useAuthContext } from "../../contexts/AuthContext";
@@ -9,31 +9,41 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 //components
 import MoviePoster from "../../components/MoviePoster/MoviePoster";
+import Loading from "../../components/Loading/Loading";
 //interface
 import { IDataMovie, ITmdb } from "../../interfaces/IApi";
 import NavCategories from "./NavCategories/NavCategories";
 
 const responsive = {
-  0: { items: 1 },
-  600: { items: 2 },
+  0: { items: 2 },
+  650: { items: 3 },
   1024: { items: 4 },
 };
 
 const Home = () => {
   const { randomData } = useAuthContext();
-  const [moviePoster, setMoviePoster] = useState<ITmdb>(
-    randomData!.randomMovie
-  );
-  const [moviesByCategory, setMoviesByCategory] = useState<IDataMovie>(
-    randomData!.randomList
+  const [moviePoster, setMoviePoster] = useState<ITmdb | null>(null);
+  const [moviesByCategory, setMoviesByCategory] = useState<IDataMovie | null>(
+    null
   );
 
+  useEffect(() => {
+    if (randomData) {
+      setMoviePoster(randomData.randomMovie);
+      setMoviesByCategory(randomData.randomList);
+    }
+  }, [randomData]);
+
+  if (moviePoster === null || moviesByCategory === null) {
+    return <Loading />;
+  }
   return (
     <Container FlexContent="space-between" style={{ position: "absolute" }}>
       {moviePoster && (
         <MoviePoster
           backdrop_path={moviePoster.backdrop_path}
           title={moviePoster.title}
+          name={moviePoster.name}
           overview={moviePoster.overview}
           vote_average={moviePoster.vote_average}
         >

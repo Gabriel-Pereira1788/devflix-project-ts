@@ -1,17 +1,13 @@
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
-
 //styles
 import { ContainerInput } from "./styles";
 import { ContainerForm } from "../../GlobalStyles";
 //interface
 import { IUser, initialValue } from "../../interfaces/IUser";
-
 //hooks
 import { useAuthentication } from "../../hooks/useAuthentication";
 
-type Props = {};
-
-const Register = (props: Props) => {
+const Register = () => {
   const { createUser, error, loading } = useAuthentication();
 
   const [userRegister, setUserRegister] = useState<IUser>(initialValue);

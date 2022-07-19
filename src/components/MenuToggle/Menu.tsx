@@ -1,22 +1,18 @@
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
-import { Nav, Title, List, UserIcon, Toggle } from "./styles";
-import PersonIcon from "@mui/icons-material/Person";
-import MenuIcon from "@mui/icons-material/Menu";
+import { MenuNav, List } from "./styles";
 type Props = {
-  setCardUserOn: React.Dispatch<React.SetStateAction<boolean>>;
   setMenuToggleOn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const NavBar = ({ setCardUserOn, setMenuToggleOn }: Props) => {
+const Menu = ({ setMenuToggleOn }: Props) => {
   const { user } = useAuthContext();
   return (
-    <Nav>
-      <Title>
-        <NavLink to="/">DEVFLIX</NavLink>
-      </Title>
-
+    <MenuNav>
       <List>
+        <li>
+          <button onClick={() => setMenuToggleOn(false)}>X</button>
+        </li>
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
@@ -28,10 +24,6 @@ const NavBar = ({ setCardUserOn, setMenuToggleOn }: Props) => {
             <li>
               <NavLink to="/favorites">Favoritos</NavLink>
             </li>
-            <UserIcon onClick={() => setCardUserOn(true)}>
-              <span>{user.displayName}</span>
-              <PersonIcon />
-            </UserIcon>
           </>
         ) : (
           <>
@@ -44,11 +36,8 @@ const NavBar = ({ setCardUserOn, setMenuToggleOn }: Props) => {
           </>
         )}
       </List>
-      <Toggle onClick={() => setMenuToggleOn(true)}>
-        <MenuIcon />
-      </Toggle>
-    </Nav>
+    </MenuNav>
   );
 };
 
-export default NavBar;
+export default Menu;

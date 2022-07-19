@@ -7,14 +7,21 @@ type Props = {
 export const Poster = styled.section<Props>`
   transition: all 0.5s;
   width: 100%;
-  height: 760px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   background-image: url(${(props) => props.background});
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
+  @media screen and (min-width: 1800px) {
+    height: 900px;
+  }
+  @media screen and (max-width: 600px) {
+    height: 450px;
+  }
 `;
 
 export const WrapperInfo = styled.div`
@@ -34,7 +41,8 @@ export const WrapperInfo = styled.div`
   );
   padding: 20px;
   article {
-    max-width: 400px;
+    max-width: 600px;
+    min-width: 400px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -45,6 +53,7 @@ export const WrapperInfo = styled.div`
 `;
 
 export const Title = styled.h1`
+  text-shadow: 0px 3px 5px black;
   font-size: clamp(1.5em, 2.5vw, 2.5em);
   color: red;
   text-align: left;

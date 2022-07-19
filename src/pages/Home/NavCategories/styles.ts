@@ -10,10 +10,11 @@ export const Categories = styled.nav`
   ul {
     display: flex;
     li {
+      font-size: clamp(0.3em, 1vw, 1.5em);
       font-weight: bold;
       border-bottom: 1px solid white;
       cursor: pointer;
-      padding: 10px 10px;
+      padding: 10px 5px;
       text-transform: uppercase;
     }
   }

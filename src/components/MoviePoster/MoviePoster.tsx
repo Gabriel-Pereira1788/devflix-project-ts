@@ -1,12 +1,13 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-
+import { formatMaxLetters } from "../../utils/formatOverview";
 import { Poster, WrapperInfo, Title, Overview } from "./styles";
 //interface
 
 type Props = {
   backdrop_path: string;
   title: string;
+  name: string;
   overview: string;
   vote_average: number;
   children: ReactNode;
@@ -14,6 +15,7 @@ type Props = {
 
 const MoviePoster = ({
   title,
+  name,
   backdrop_path,
   overview,
   vote_average,
@@ -26,8 +28,8 @@ const MoviePoster = ({
     >
       <WrapperInfo>
         <article>
-          <Title>{title}</Title>
-          <Overview>{overview}</Overview>
+          <Title>{title ? title : name}</Title>
+          <Overview>{formatMaxLetters(overview, 450)}</Overview>
           {children}
           <span>{vote_average}</span>
         </article>

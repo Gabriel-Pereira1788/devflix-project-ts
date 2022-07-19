@@ -17,6 +17,7 @@ const Movie = (props: Props) => {
         <MoviePoster
           backdrop_path={data.backdrop_path}
           title={data.title}
+          name={data.name}
           overview={data.overview}
           vote_average={data.vote_average}
         >
