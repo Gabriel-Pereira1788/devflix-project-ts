@@ -11,7 +11,7 @@ function NavCategories({ setMoviesByCategory }: Props) {
 
   const handleSetCategory = (category: string) => {
     return () => {
-      const DataCategoty = dataList?.moviesList.find(
+      const DataCategoty = dataList?.seriesList.find(
         (DataMovies) => DataMovies.identify === category
       );
       setMoviesByCategory(DataCategoty!);
@@ -20,8 +20,8 @@ function NavCategories({ setMoviesByCategory }: Props) {
   return (
     <Categories>
       <ul>
-        {dataList?.moviesList &&
-          dataList.moviesList.map(({ title, identify }, index) => (
+        {dataList?.seriesList &&
+          dataList.seriesList.map(({ title, identify }, index) => (
             <li onClick={handleSetCategory(identify)} key={index}>
               {title}
             </li>

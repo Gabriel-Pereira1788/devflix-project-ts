@@ -1,16 +1,14 @@
 import { User } from "firebase/auth";
-import { IDataMovie, IRandomData } from "./IApi";
+import { IDataMovie, IData_List } from "./IApi";
 
 export interface IContext {
   user: User | null;
   loading: boolean;
-  homeList: IDataMovie[] | null;
-  randomData: IRandomData | null;
+  dataList: IData_List | null;
 }
 
 export const initialValueContext: IContext = {
   user: null,
   loading: false,
-  homeList: null,
-  randomData: null,
+  dataList: null,
 };

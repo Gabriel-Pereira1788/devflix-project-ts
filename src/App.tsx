@@ -5,6 +5,7 @@ import { Container } from "./GlobalStyles";
 import About from "./pages/About/About";
 import Favorites from "./pages/Favorites/Favorites";
 import Home from "./pages/Home/Home";
+import Series from "./pages/Series/Series";
 import Login from "./pages/Login/Login";
 import Movie from "./pages/Movie/Movie";
 import Register from "./pages/Register/Register";
@@ -36,6 +37,7 @@ function App() {
         {cardUserOn && <CardUser setCardUserOn={setCardUserOn} />}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/series" element={<Series />} />
           <Route path="/about" element={<About />} />
           <Route path="/favorites" element={user ? <Favorites /> : <Home />} />
           <Route path="/login" element={!user ? <Login /> : <Home />} />

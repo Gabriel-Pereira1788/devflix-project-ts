@@ -7,7 +7,7 @@ interface List {
 
 export interface IRandomData {
   randomList: IDataMovie;
-  randomMovie: ITmdb;
+  randomMedia: ITmdb;
 }
 
 export interface IDataMovie {
@@ -16,6 +16,12 @@ export interface IDataMovie {
   list: List;
 }
 
+export interface IData_List {
+  moviesList: IDataMovie[];
+  seriesList: IDataMovie[];
+  randomMoviesList: IRandomData | null;
+  randomSeriesList: IRandomData | null;
+}
 export interface ITmdb {
   backdrop_path: string;
   id: number;

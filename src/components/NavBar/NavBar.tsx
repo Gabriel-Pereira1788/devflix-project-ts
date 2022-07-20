@@ -21,6 +21,9 @@ const NavBar = ({ setCardUserOn, setMenuToggleOn }: Props) => {
           <NavLink to="/">Home</NavLink>
         </li>
         <li>
+          <NavLink to="/series">Series</NavLink>
+        </li>
+        <li>
           <NavLink to="/about">Sobre</NavLink>
         </li>
         {user ? (

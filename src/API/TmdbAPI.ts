@@ -15,25 +15,11 @@ const fetchData = async (url: string) => {
   }
 };
 
-const mountURL = (route: string): string =>
-  `${API_URL_BASE}/discover/movie?api_key=${KEY}&language=pt-BR&${route}`;
+const mountURL = (route: string, media: string): string =>
+  `${API_URL_BASE}/discover/${media}?api_key=${KEY}&language=pt-BR&${route}`;
 
-export const GetHomeList = async (): Promise<IDataMovie[]> => {
+export const GetMovieList = async (): Promise<IDataMovie[]> => {
   return [
-    {
-      identify: "originals",
-      title: "Originais netflix",
-      list: await fetchData(
-        `${API_URL_BASE}/discover/tv?api_key=${KEY}&language=pt-BR&with_networks=213`
-      ),
-    },
-    {
-      identify: "trending",
-      title: "Recomendados",
-      list: await fetchData(
-        `${API_URL_BASE}/trending/all/week?language=pt-BR&api_key=${KEY}`
-      ),
-    },
     {
       identify: "top",
       title: "Em alta",
@@ -44,27 +30,71 @@ export const GetHomeList = async (): Promise<IDataMovie[]> => {
     {
       identify: "action",
       title: "Ação",
-      list: await fetchData(mountURL("with_genres=28")),
+      list: await fetchData(mountURL("with_genres=28", "movie")),
     },
     {
       identify: "comedy",
       title: "Comedia",
-      list: await fetchData(mountURL("with_genres=35")),
+      list: await fetchData(mountURL("with_genres=35", "movie")),
     },
     {
       identify: "horror",
       title: "Terror",
-      list: await fetchData(mountURL("with_genres=27")),
+      list: await fetchData(mountURL("with_genres=27", "movie")),
     },
     {
       identify: "romance",
       title: "Romance",
-      list: await fetchData(mountURL("with_genres=10749")),
+      list: await fetchData(mountURL("with_genres=10749", "movie")),
     },
     {
       identify: "documentaries",
       title: "Documentarios",
-      list: await fetchData(mountURL("with_genres=99")),
+      list: await fetchData(mountURL("with_genres=99", "movie")),
+    },
+  ];
+};
+
+export const GetSerieList = async (): Promise<IDataMovie[]> => {
+  return [
+    {
+      identify: "originals",
+      title: "Originais netflix",
+      list: await fetchData(
+        `${API_URL_BASE}/discover/tv?api_key=${KEY}&language=pt-BR&with_networks=213`
+      ),
+    },
+    {
+      identify: "top",
+      title: "Em alta",
+      list: await fetchData(
+        `${API_URL_BASE}/tv/top_rated?language=pt-BR&api_key=${KEY}`
+      ),
+    },
+    {
+      identify: "action",
+      title: "Ação",
+      list: await fetchData(mountURL("with_genres=10759", "tv")),
+    },
+    {
+      identify: "comedy",
+      title: "Comedia",
+      list: await fetchData(mountURL("with_genres=35", "tv")),
+    },
+    {
+      identify: "Mystery",
+      title: "Misterio",
+      list: await fetchData(mountURL("with_genres=9648", "tv")),
+    },
+    {
+      identify: "romance",
+      title: "Romance",
+      list: await fetchData(mountURL("with_genres=10749", "tv")),
+    },
+    {
+      identify: "documentaries",
+      title: "Documentarios",
+      list: await fetchData(mountURL("with_genres=99", "tv")),
     },
   ];
 };

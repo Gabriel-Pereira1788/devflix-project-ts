@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 //context
 import { useAuthContext } from "../../contexts/AuthContext";
 //styles
-import { Movie } from "./styles";
+import { Serie } from "./styles";
 import { Container } from "../../GlobalStyles";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -20,55 +20,55 @@ const responsive = {
   1024: { items: 4 },
 };
 
-const Home = () => {
+const Series = () => {
   const { dataList } = useAuthContext();
-  const [moviePoster, setMoviePoster] = useState<ITmdb | null>(null);
-  const [moviesByCategory, setMoviesByCategory] = useState<IDataMovie | null>(
+  const [seriePoster, setSeriePoster] = useState<ITmdb | null>(null);
+  const [seriesByCategory, setSeriesByCategory] = useState<IDataMovie | null>(
     null
   );
 
   useEffect(() => {
-    if (dataList?.randomMoviesList) {
-      const { randomList, randomMedia } = dataList.randomMoviesList;
-      setMoviesByCategory(randomList);
-      setMoviePoster(randomMedia);
+    if (dataList?.randomSeriesList) {
+      const { randomList, randomMedia } = dataList.randomSeriesList;
+      setSeriesByCategory(randomList);
+      setSeriePoster(randomMedia);
     }
   }, [dataList]);
 
-  if (moviePoster === null || moviesByCategory === null) {
+  if (seriePoster === null || seriesByCategory === null) {
     return <Loading />;
   }
   return (
     <Container FlexContent="space-between" style={{ position: "absolute" }}>
-      {moviePoster && (
+      {seriePoster && (
         <MoviePoster
-          backdrop_path={moviePoster.backdrop_path}
-          title={moviePoster.title}
-          name={moviePoster.name}
-          overview={moviePoster.overview}
-          vote_average={moviePoster.vote_average}
+          backdrop_path={seriePoster.backdrop_path}
+          title={seriePoster.title}
+          name={seriePoster.name}
+          overview={seriePoster.overview}
+          vote_average={seriePoster.vote_average}
         >
-          <Link to={`/movie/${moviePoster.id}`}>
+          <Link to={`/movie/${seriePoster.id}`}>
             <button>opinar</button>
           </Link>
         </MoviePoster>
       )}
-      <NavCategories setMoviesByCategory={setMoviesByCategory} />
+      <NavCategories setMoviesByCategory={setSeriesByCategory} />
       <AliceCarousel responsive={responsive} infinite={true}>
-        {moviesByCategory &&
-          moviesByCategory.list.results.map((movie, index) => (
-            <Movie key={index} onClick={() => setMoviePoster(movie)}>
+        {seriesByCategory &&
+          seriesByCategory.list.results.map((movie, index) => (
+            <Serie key={index} onClick={() => setSeriePoster(movie)}>
               <a href="#main_poster">
                 <img
                   src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                   alt=""
                 />
               </a>
-            </Movie>
+            </Serie>
           ))}
       </AliceCarousel>
     </Container>
   );
 };
 
-export default Home;
+export default Series;

@@ -1,7 +1,6 @@
-import React, {
+import {
   createContext,
   useState,
-  useRef,
   useEffect,
   ReactNode,
   useContext,
@@ -10,13 +9,13 @@ import React, {
 //context
 import { IContext, initialValueContext } from "../interfaces/IContext";
 //api
-import { IDataMovie, IRandomData } from "../interfaces/IApi";
+import { IData_List } from "../interfaces/IApi";
 //Authentication
 import { useAuthentication } from "../hooks/useAuthentication";
 import { onAuthStateChanged, User } from "firebase/auth";
 //utils
 import { randomItem } from "../utils/randomItem";
-import { GetHomeList } from "../API/TmdbAPI";
+import { GetMovieList, GetSerieList } from "../API/TmdbAPI";
 
 type Props = {
   children: ReactNode;
@@ -27,8 +26,12 @@ export const AuthContext = createContext<IContext>(initialValueContext);
 const AuthContextProvider = ({ children }: Props) => {
   const [user, setUser] = useState<User | null>(null);
   const { auth, loading } = useAuthentication();
-  const [homeList, setHomeList] = useState<IDataMovie[] | null>(null);
-  const [randomData, setRandomData] = useState<IRandomData | null>(null);
+  const [dataList, setDataList] = useState<IData_List>({
+    moviesList: [],
+    seriesList: [],
+    randomMoviesList: null,
+    randomSeriesList: null,
+  });
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -38,25 +41,34 @@ const AuthContextProvider = ({ children }: Props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await GetHomeList();
-      if (res) {
-        setHomeList(res);
+      const responseMovies = await GetMovieList();
+      const responseSeries = await GetSerieList();
+
+      if (responseMovies && responseSeries) {
+        const randomMoviesList = randomItem(responseMovies);
+        const randomSeriesList = randomItem(responseSeries);
+
+        setDataList((prevState) => ({
+          ...prevState,
+          moviesList: responseMovies,
+          seriesList: responseSeries,
+          randomMoviesList: {
+            randomList: randomMoviesList,
+            randomMedia: randomItem(randomMoviesList.list.results),
+          },
+          randomSeriesList: {
+            randomList: randomSeriesList,
+            randomMedia: randomItem(randomSeriesList.list.results),
+          },
+        }));
       }
     };
 
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (homeList) {
-      const randomList = randomItem(homeList);
-      const randomMovie = randomItem(randomList.list.results);
-      setRandomData({ randomList, randomMovie });
-    }
-  }, [homeList]);
-
   return (
-    <AuthContext.Provider value={{ user, loading, homeList, randomData }}>
+    <AuthContext.Provider value={{ user, loading, dataList }}>
       {children}
     </AuthContext.Provider>
   );
