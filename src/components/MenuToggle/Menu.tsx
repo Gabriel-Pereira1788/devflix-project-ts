@@ -1,37 +1,62 @@
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
-import { MenuNav, List } from "./styles";
+import { MenuNav, List, User, Button } from "./styles";
+//icons
+import PersonIcon from "@mui/icons-material/Person";
+import { useAuthentication } from "../../hooks/useAuthentication";
 type Props = {
   setMenuToggleOn: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
 const Menu = ({ setMenuToggleOn }: Props) => {
   const { user } = useAuthContext();
+  const { signOutAccount } = useAuthentication();
+
+  const handleSignOut = () => {
+    signOutAccount();
+    setMenuToggleOn(false);
+  };
   return (
     <MenuNav>
       <List>
         <li>
-          <button onClick={() => setMenuToggleOn(false)}>X</button>
+          <Button onClick={() => setMenuToggleOn(false)}>X</Button>
         </li>
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/" onClick={() => setMenuToggleOn(false)}>
+            Home
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/about">Sobre</NavLink>
+          <NavLink to="/about" onClick={() => setMenuToggleOn(false)}>
+            Sobre
+          </NavLink>
         </li>
         {user ? (
           <>
             <li>
-              <NavLink to="/favorites">Favoritos</NavLink>
+              <NavLink to="/favorites" onClick={() => setMenuToggleOn(false)}>
+                Favoritos
+              </NavLink>
+            </li>
+            <User>
+              <span>{user.displayName}</span>
+              <PersonIcon />
+            </User>
+            <li>
+              <Button onClick={handleSignOut}>Sair</Button>
             </li>
           </>
         ) : (
           <>
             <li>
-              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/login" onClick={() => setMenuToggleOn(false)}>
+                Login
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/register">Register</NavLink>
+              <NavLink to="/register" onClick={() => setMenuToggleOn(false)}>
+                Register
+              </NavLink>
             </li>
           </>
         )}

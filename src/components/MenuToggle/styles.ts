@@ -21,6 +21,22 @@ export const List = styled.ul`
   }
 `;
 
+export const User = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s;
+  span {
+    margin-right: 10px;
+    color: #999191f2;
+  }
+
+  &:hover {
+    color: red;
+  }
+`;
+
 const displayMenu = keyframes`
 
   from{
@@ -46,5 +62,15 @@ export const MenuNav = styled.section`
   z-index: 1;
   @media screen and (max-width: 580px) {
     display: flex;
+  }
+`;
+
+export const Button = styled.button`
+  text-align: right;
+  background: none;
+  font-weight: bold;
+  &:hover {
+    background: none;
+    color: red;
   }
 `;

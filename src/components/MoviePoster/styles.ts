@@ -39,10 +39,12 @@ export const WrapperInfo = styled.div`
     75%,
     #1c1c1c00
   );
-  padding: 20px;
+  padding: 5px;
   article {
+    margin-top: 3.5em;
+    padding: 0px 20px;
     max-width: 600px;
-    min-width: 400px;
+    min-width: 250px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -62,6 +64,6 @@ export const Title = styled.h1`
 export const Overview = styled.p`
   margin: 2rem 0;
   text-shadow: 0px 3px 5px black;
-  font-size: clamp(0.5em, 1.5vw, 1em);
+
   text-align: justify;
 `;

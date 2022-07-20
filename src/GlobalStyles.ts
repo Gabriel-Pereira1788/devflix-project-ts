@@ -38,8 +38,9 @@ const GlobalStyle = createGlobalStyle`
     p{
         line-height: 30px;
         letter-spacing: 1px;
+        font-size: clamp(0.5em, 1.5vw, 1em);
     }
-    h1,h2,h3,h4,p,label,li{
+    h1,h2,h3,h4,p,label,li,textarea{
         color: #fff;
         font-family: "Montserrat", sans-serif;
     }
@@ -130,6 +131,7 @@ export const Container = styled.main<PropsContainer>`
 `;
 
 export const ContainerForm = styled.section`
+  padding: 25px;
   width: 100%;
   display: flex;
   flex-direction: column;
