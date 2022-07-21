@@ -23,7 +23,12 @@ const Menu = ({ setMenuToggleOn }: Props) => {
         </li>
         <li>
           <NavLink to="/" onClick={() => setMenuToggleOn(false)}>
-            Home
+            Filmes
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/series" onClick={() => setMenuToggleOn(false)}>
+            Series
           </NavLink>
         </li>
         <li>
@@ -33,11 +38,6 @@ const Menu = ({ setMenuToggleOn }: Props) => {
         </li>
         {user ? (
           <>
-            <li>
-              <NavLink to="/favorites" onClick={() => setMenuToggleOn(false)}>
-                Favoritos
-              </NavLink>
-            </li>
             <User>
               <span>{user.displayName}</span>
               <PersonIcon />

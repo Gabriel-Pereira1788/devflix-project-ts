@@ -8,7 +8,7 @@ import { Container } from "../../GlobalStyles";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 //components
-import MoviePoster from "../../components/MoviePoster/MoviePoster";
+import SeriePoster from "../../components/MediaPoster/MediaPoster";
 import Loading from "../../components/Loading/Loading";
 //interface
 import { IDataMovie, ITmdb } from "../../interfaces/IApi";
@@ -41,17 +41,17 @@ const Series = () => {
   return (
     <Container FlexContent="space-between" style={{ position: "absolute" }}>
       {seriePoster && (
-        <MoviePoster
+        <SeriePoster
           backdrop_path={seriePoster.backdrop_path}
           title={seriePoster.title}
           name={seriePoster.name}
           overview={seriePoster.overview}
           vote_average={seriePoster.vote_average}
         >
-          <Link to={`/movie/${seriePoster.id}`}>
-            <button>opinar</button>
+          <Link to={`/${"Tv"}/${seriePoster.id}`}>
+            <button>resenhas</button>
           </Link>
-        </MoviePoster>
+        </SeriePoster>
       )}
       <NavCategories setMoviesByCategory={setSeriesByCategory} />
       <AliceCarousel responsive={responsive} infinite={true}>

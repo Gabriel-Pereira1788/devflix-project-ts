@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Container } from "./GlobalStyles";
 //pages
 import About from "./pages/About/About";
-import Favorites from "./pages/Favorites/Favorites";
 import Home from "./pages/Home/Home";
 import Series from "./pages/Series/Series";
 import Login from "./pages/Login/Login";
-import Movie from "./pages/Movie/Movie";
+import SingleMedia from "./pages/SingleMedia/SingleMedia";
 import Register from "./pages/Register/Register";
 //context
 import { useAuthContext } from "./contexts/AuthContext";
@@ -39,10 +38,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/series" element={<Series />} />
           <Route path="/about" element={<About />} />
-          <Route path="/favorites" element={user ? <Favorites /> : <Home />} />
           <Route path="/login" element={!user ? <Login /> : <Home />} />
           <Route path="/register" element={!user ? <Register /> : <Home />} />
-          <Route path="/movie/:id" element={user ? <Movie /> : <Login />} />
+          <Route
+            path="/:media/:id"
+            element={user ? <SingleMedia /> : <Login />}
+          />
         </Routes>
       </BrowserRouter>
     </Container>

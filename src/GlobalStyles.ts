@@ -96,12 +96,13 @@ const GlobalStyle = createGlobalStyle`
             color: #fff;
             text-align: center;
             cursor: pointer;
-            border-radius: 10px;
+            border-radius: 5px;
             width: 120px;
             font-weight: bold;
             border: none;
             padding: 10px 15px;
-            font-size: 1em;
+            font-size: clamp(0.5em,1.5vw,1em);
+            text-transform: uppercase;
             &:hover{
                 transition: all 0.4s;
                 background-color: red;

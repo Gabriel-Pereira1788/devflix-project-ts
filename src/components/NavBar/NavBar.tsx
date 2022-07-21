@@ -18,7 +18,7 @@ const NavBar = ({ setCardUserOn, setMenuToggleOn }: Props) => {
 
       <List>
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">Filmes</NavLink>
         </li>
         <li>
           <NavLink to="/series">Series</NavLink>
@@ -28,9 +28,6 @@ const NavBar = ({ setCardUserOn, setMenuToggleOn }: Props) => {
         </li>
         {user ? (
           <>
-            <li>
-              <NavLink to="/favorites">Favoritos</NavLink>
-            </li>
             <UserIcon onClick={() => setCardUserOn(true)}>
               <span>{user.displayName}</span>
               <PersonIcon />

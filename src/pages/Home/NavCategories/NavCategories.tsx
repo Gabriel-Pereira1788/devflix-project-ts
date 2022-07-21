@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { IDataMovie } from "../../../interfaces/IApi";
 import { Categories } from "./styles";
@@ -31,4 +31,4 @@ function NavCategories({ setMoviesByCategory }: Props) {
   );
 }
 
-export default NavCategories;
+export default memo(NavCategories);

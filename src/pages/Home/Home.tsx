@@ -8,7 +8,7 @@ import { Container } from "../../GlobalStyles";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 //components
-import MoviePoster from "../../components/MoviePoster/MoviePoster";
+import MoviePoster from "../../components/MediaPoster/MediaPoster";
 import Loading from "../../components/Loading/Loading";
 //interface
 import { IDataMovie, ITmdb } from "../../interfaces/IApi";
@@ -48,8 +48,8 @@ const Home = () => {
           overview={moviePoster.overview}
           vote_average={moviePoster.vote_average}
         >
-          <Link to={`/movie/${moviePoster.id}`}>
-            <button>opinar</button>
+          <Link to={`/${"Movie"}/${moviePoster.id}`}>
+            <button>resenhas</button>
           </Link>
         </MoviePoster>
       )}
