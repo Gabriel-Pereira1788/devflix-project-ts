@@ -21,22 +21,6 @@ export const List = styled.ul`
   }
 `;
 
-export const User = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  transition: all 0.3s;
-  span {
-    margin-right: 10px;
-    color: #999191f2;
-  }
-
-  &:hover {
-    color: red;
-  }
-`;
-
 const displayMenu = keyframes`
 
   from{
@@ -66,6 +50,7 @@ export const MenuNav = styled.section`
 `;
 
 export const Button = styled.button`
+  font-size: clamp(1em, 1.5vw, 1.5em);
   text-align: right;
   background: none;
   font-weight: bold;

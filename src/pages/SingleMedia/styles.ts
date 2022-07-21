@@ -1,14 +1,8 @@
 import styled from "styled-components";
 
-export const bla = "bla";
-
-export const ButtonsContainer = styled.div`
-  width: 100%;
-  align-items: flex-start;
-  button {
-    margin-right: 15px;
-  }
-`;
+type PropsContent = {
+  Background_Set: string;
+};
 
 export const Wrapper = styled.section`
   margin-top: 10%;
@@ -20,10 +14,10 @@ export const Wrapper = styled.section`
   width: 100%;
 `;
 
-export const ReviewContent = styled.div`
-  background-color: #2e2c2c;
+export const Content = styled.div<PropsContent>`
   width: 100%;
   padding: 41px;
+  background: ${(props) => props.Background_Set};
   article {
     padding: 20px;
     border-top: 1px solid #7e7a7a69;
@@ -39,6 +33,7 @@ export const ReviewContent = styled.div`
 `;
 
 export const Author = styled.div`
+  margin: 1em 0;
   display: flex;
   width: 100%;
   align-items: flex-start;
@@ -51,20 +46,31 @@ export const Author = styled.div`
   }
 `;
 
-export const NewReviewModel = styled.section`
+export const NewCommentModel = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  width: 85%;
+  width: 100%;
   padding: 15px;
   border-radius: 5px;
   background-color: #1e1d1d;
-  div {
+  form {
     display: flex;
-    width: 100%;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     justify-content: flex-start;
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    button {
+      width: auto;
+      background: none;
+      &:hover {
+        background: none;
+        color: red;
+      }
+    }
   }
 `;
 export const User = styled.div`

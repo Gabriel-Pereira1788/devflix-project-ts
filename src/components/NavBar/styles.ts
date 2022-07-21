@@ -47,22 +47,6 @@ export const List = styled.ul`
   }
 `;
 
-export const UserIcon = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  transition: all 0.3s;
-  span {
-    margin-right: 10px;
-    color: #999191f2;
-  }
-
-  &:hover {
-    color: red;
-  }
-`;
-
 export const Toggle = styled.button`
   display: none;
   background: none;

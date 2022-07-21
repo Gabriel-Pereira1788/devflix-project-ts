@@ -14,7 +14,6 @@ const initialState: IInitialState = {
 };
 
 const insertReducer = (state: IInitialState, action: IAction) => {
-  console.log(action);
   switch (action.type) {
     case "LOADING":
       return { loading: true, error: null };

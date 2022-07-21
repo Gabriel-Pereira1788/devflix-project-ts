@@ -36,7 +36,11 @@ const Home = () => {
   }, [dataList]);
 
   if (moviePoster === null || moviesByCategory === null) {
-    return <Loading />;
+    return (
+      <Container FlexContent="center">
+        <Loading />
+      </Container>
+    );
   }
   return (
     <Container FlexContent="space-between" style={{ position: "absolute" }}>

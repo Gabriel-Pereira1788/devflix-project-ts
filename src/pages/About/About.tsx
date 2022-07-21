@@ -1,8 +1,8 @@
 import React from "react";
 import { Container } from "./style";
-type Props = {};
+import Footer from "../../components/Footer/Footer";
 
-const About = (props: Props) => {
+const About = () => {
   return (
     <>
       <Container>
@@ -15,6 +15,7 @@ const About = (props: Props) => {
           </p>
         </article>
       </Container>
+      <Footer />
     </>
   );
 };

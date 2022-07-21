@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     body{
 
         min-height: 100vh;
-        background-color: #000000f2;
+        background-color: #1c1b1b;
         padding: 0;
         margin: 0;
         font-family: "Montserrat", sans-serif;
@@ -34,6 +34,9 @@ const GlobalStyle = createGlobalStyle`
         
             text-decoration:none
         }
+    }
+    span{
+        font-family: "Montserrat", sans-serif;
     }
     p{
         line-height: 30px;
@@ -89,8 +92,6 @@ const GlobalStyle = createGlobalStyle`
     
     font-family: "Montserrat", sans-serif;
     }
-
-   
         button{
             background-color: #850000;
             color: #fff;
@@ -145,5 +146,22 @@ export const ContainerForm = styled.section`
     background-color: #fd4949c9;
     color: white;
     text-align: center;
+  }
+`;
+
+export const User = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s;
+  span {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #fff;
+  }
+
+  &:hover {
+    color: red;
   }
 `;

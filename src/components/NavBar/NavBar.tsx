@@ -1,14 +1,15 @@
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
-import { Nav, Title, List, UserIcon, Toggle } from "./styles";
+import { Nav, Title, List, Toggle } from "./styles";
+import { User } from "../../GlobalStyles";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 type Props = {
-  setCardUserOn: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalUserOn: React.Dispatch<React.SetStateAction<boolean>>;
   setMenuToggleOn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const NavBar = ({ setCardUserOn, setMenuToggleOn }: Props) => {
+const NavBar = ({ setModalUserOn, setMenuToggleOn }: Props) => {
   const { user } = useAuthContext();
   return (
     <Nav>
@@ -28,10 +29,10 @@ const NavBar = ({ setCardUserOn, setMenuToggleOn }: Props) => {
         </li>
         {user ? (
           <>
-            <UserIcon onClick={() => setCardUserOn(true)}>
+            <User onClick={() => setModalUserOn(true)}>
               <span>{user.displayName}</span>
               <PersonIcon />
-            </UserIcon>
+            </User>
           </>
         ) : (
           <>

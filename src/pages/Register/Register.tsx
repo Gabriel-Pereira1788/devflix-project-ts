@@ -6,6 +6,8 @@ import { ContainerForm } from "../../GlobalStyles";
 import { IUser, initialValue } from "../../interfaces/IUser";
 //hooks
 import { useAuthentication } from "../../hooks/useAuthentication";
+//components
+import Footer from "../../components/Footer/Footer";
 
 const Register = () => {
   const { createUser, error, loading } = useAuthentication();
@@ -29,7 +31,6 @@ const Register = () => {
     }
 
     const res = await createUser(userRegister);
-    console.log(res);
   };
 
   useEffect(() => {
@@ -39,61 +40,64 @@ const Register = () => {
   }, [error]);
 
   return (
-    <ContainerForm>
-      <form onSubmit={handleSubmit}>
-        <h3>Cadastrar-se</h3>
-        <ContainerInput>
-          <span>Nome:</span>
-          <input
-            type="text"
-            name="displayName"
-            id="displayName"
-            placeholder="Insira seu nome"
-            onChange={handleChange}
-            required
-          />
-        </ContainerInput>
-        <ContainerInput>
-          <span>E-mail:</span>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Insira seu E-mail"
-            onChange={handleChange}
-            required
-          />
-        </ContainerInput>
-        <ContainerInput>
-          <span>Senha:</span>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Insira sua senha"
-            onChange={handleChange}
-            required
-          />
-        </ContainerInput>
-        <ContainerInput>
-          <span>Confirmar senha:</span>
-          <input
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-            placeholder="repita sua senha"
-            onChange={handleChange}
-            required
-          />
-        </ContainerInput>
-        {loading ? (
-          <button disabled>carregando...</button>
-        ) : (
-          <button>cadastrar</button>
-        )}
-        {messageError && <p>{messageError}</p>}
-      </form>
-    </ContainerForm>
+    <>
+      <ContainerForm>
+        <form onSubmit={handleSubmit}>
+          <h3>Cadastrar-se</h3>
+          <ContainerInput>
+            <span>Nome:</span>
+            <input
+              type="text"
+              name="displayName"
+              id="displayName"
+              placeholder="Insira seu nome"
+              onChange={handleChange}
+              required
+            />
+          </ContainerInput>
+          <ContainerInput>
+            <span>E-mail:</span>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Insira seu E-mail"
+              onChange={handleChange}
+              required
+            />
+          </ContainerInput>
+          <ContainerInput>
+            <span>Senha:</span>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Insira sua senha"
+              onChange={handleChange}
+              required
+            />
+          </ContainerInput>
+          <ContainerInput>
+            <span>Confirmar senha:</span>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="repita sua senha"
+              onChange={handleChange}
+              required
+            />
+          </ContainerInput>
+          {loading ? (
+            <button disabled>carregando...</button>
+          ) : (
+            <button>cadastrar</button>
+          )}
+          {messageError && <p>{messageError}</p>}
+        </form>
+      </ContainerForm>
+      <Footer />
+    </>
   );
 };
 

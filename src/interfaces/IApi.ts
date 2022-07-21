@@ -35,6 +35,7 @@ export interface ITmdb {
 }
 
 export interface IContentReview {
+  id: string;
   author: string;
   content: string;
   created_at: string;

@@ -3,11 +3,7 @@ import { Spinner } from "./styles";
 import { Container } from "../../GlobalStyles";
 
 const Loading = () => {
-  return (
-    <Container FlexContent="center">
-      <Spinner></Spinner>
-    </Container>
-  );
+  return <Spinner></Spinner>;
 };
 
 export default Loading;

@@ -13,12 +13,12 @@ import { useAuthContext } from "./contexts/AuthContext";
 //components
 import NavBar from "./components/NavBar/NavBar";
 import Menu from "./components/MenuToggle/Menu";
-import CardUser from "./components/CardUser/CardUser";
-import Loading from "./components/Loading/Loading";
 
+import Loading from "./components/Loading/Loading";
+import ModalUser from "./components/ModalUser/ModalUser";
 function App() {
   const { user } = useAuthContext();
-  const [cardUserOn, setCardUserOn] = useState<boolean>(false);
+  const [modalUserOn, setModalUserOn] = useState<boolean>(false);
   const [menuToggleOn, setMenuToggleOn] = useState<boolean>(false);
   const loadingUser: boolean = user === undefined;
 
@@ -29,11 +29,11 @@ function App() {
     <Container FlexContent="space-between">
       <BrowserRouter>
         <NavBar
-          setCardUserOn={setCardUserOn}
+          setModalUserOn={setModalUserOn}
           setMenuToggleOn={setMenuToggleOn}
         />
         {menuToggleOn && <Menu setMenuToggleOn={setMenuToggleOn} />}
-        {cardUserOn && <CardUser setCardUserOn={setCardUserOn} />}
+        {modalUserOn && <ModalUser setModalUserOn={setModalUserOn} />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/series" element={<Series />} />

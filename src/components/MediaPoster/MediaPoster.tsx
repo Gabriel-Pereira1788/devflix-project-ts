@@ -1,7 +1,13 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { formatMaxLetters } from "../../utils/formatOverview";
-import { Poster, WrapperInfo, Title, Overview } from "./styles";
+import {
+  Poster,
+  WrapperInfo,
+  Title,
+  Overview,
+  ButtonsContainer,
+} from "./styles";
 //interface
 
 type Props = {
@@ -30,8 +36,10 @@ const MoviePoster = ({
         <article>
           <Title>{title ? title : name}</Title>
           <Overview>{formatMaxLetters(overview, 450)}</Overview>
-          {children}
-          <span>{vote_average}</span>
+          <ButtonsContainer>
+            {children}
+            <span>{vote_average}</span>
+          </ButtonsContainer>
         </article>
       </WrapperInfo>
     </Poster>

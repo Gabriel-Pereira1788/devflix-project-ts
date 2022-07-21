@@ -3,10 +3,11 @@ import { Container } from "../../GlobalStyles";
 import { useFetch } from "../../hooks/useFetch";
 //components
 import MediaPoster from "../../components/MediaPoster/MediaPoster";
+import Comment from "./Comment";
+import NewComment from "./NewComment";
 import Review from "./Review";
-import NewReview from "./NewReview";
 //styles
-import { ButtonsContainer, Wrapper, Title } from "./styles";
+import { Wrapper, Title } from "./styles";
 //interfaces
 
 import { IContentReview } from "../../interfaces/IApi";
@@ -18,27 +19,26 @@ import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 const SingleMedia = () => {
   const { id, media } = useParams();
 
-  const URL_DATA = `https://api.themoviedb.org/3/${media?.toLowerCase()}/${id}?api_key=${
+  const URL_DATA: string = `https://api.themoviedb.org/3/${media?.toLowerCase()}/${id}?api_key=${
     process.env.REACT_APP_TMDB_KEY
   }&language=pt-BR`;
-  const URL_REVIEW = `https://api.themoviedb.org/3/${media?.toLowerCase()}/${id}/reviews?api_key=${
+  const URL_REVIEW: string = `https://api.themoviedb.org/3/${media?.toLowerCase()}/${id}/reviews?api_key=${
     process.env.REACT_APP_TMDB_KEY
   }&language=pt-BR&page=1`;
 
-  const { documents, loading } = useFetchDocuments("reviews");
+  const { documents, loading } = useFetchDocuments("comments");
   const { mediaData, mediaReview } = useFetch(URL_DATA, URL_REVIEW);
   const [allReviews, setNewReview] = useState<IContentReview[]>([]);
 
-  const reviewsById: any[] = documents?.filter(
+  const commentsById: any[] = documents?.filter(
     (doc: IDocument) => doc.media_id === id
   );
 
   useEffect(() => {
-    if (reviewsById && mediaReview) {
-      setNewReview([...mediaReview.results, ...reviewsById].reverse());
-      console.log(allReviews);
+    if (mediaReview) {
+      setNewReview([...mediaReview.results].reverse());
     }
-  }, [mediaReview, documents, id]);
+  }, [mediaReview]);
 
   return (
     <Container FlexContent="center" style={{ position: "absolute" }}>
@@ -50,29 +50,37 @@ const SingleMedia = () => {
           overview={mediaData.overview}
           vote_average={mediaData.vote_average}
         >
-          <ButtonsContainer>
-            <a href="#section_reviews">
-              <button>comentar</button>
-            </a>
-          </ButtonsContainer>
+          <a href="#section_comment">
+            <button>comentar</button>
+          </a>
         </MediaPoster>
       )}
-      <Title style={{ marginTop: "5%" }} id="section_reviews">
+      <Title style={{ marginTop: "5%" }}>
         {allReviews && allReviews.length > 0
           ? "Resenhas"
-          : "Sem resenhas no momento... Seja o primeiro a adicionar uma resenha."}
+          : "Sem resenhas no momento... Mas queremos saber sua opinião."}
       </Title>
       <Wrapper>
-        <NewReview media_id={id!} />
-        {allReviews &&
-          allReviews.map(({ author, content, created_at }, index) => (
-            <Review
+        {allReviews.length > 0 && (
+          <Review
+            key={allReviews[0].id}
+            author={allReviews[0].author}
+            content={allReviews[0].content}
+            created_at={allReviews[0].created_at}
+          />
+        )}
+      </Wrapper>
+      <Wrapper id="section_comment">
+        {commentsById &&
+          commentsById.map(({ author, content, created_at }, index) => (
+            <Comment
               key={index}
               author={author}
               content={content}
               created_at={created_at}
             />
           ))}
+        <NewComment media_id={id!} />
       </Wrapper>
     </Container>
   );

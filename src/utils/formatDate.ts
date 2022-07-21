@@ -1,5 +1,4 @@
 const TEXT_REMOVE: string[] = [
-  "GMT-0300",
   "(Horário",
   "Padrão",
   "de",
@@ -12,11 +11,19 @@ const TEXT_REMOVE: string[] = [
   "Mon",
 ];
 
-export const formatDate = (date: string) => {
-  const dateNew = new Date(date);
-  return dateNew
+interface IUT {
+  seconds: number;
+}
+export const formatDate = (date: string | IUT) => {
+  let dateFormat: Date;
+
+  typeof date === "object"
+    ? (dateFormat = new Date(date.seconds))
+    : (dateFormat = new Date(date));
+
+  return dateFormat
     .toString()
     .split(" ")
-    .filter((text) => !TEXT_REMOVE.includes(text))
+    .filter((text) => !TEXT_REMOVE.includes(text) && !text.includes("GMT"))
     .join(" ");
 };

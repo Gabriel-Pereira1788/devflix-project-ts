@@ -4,6 +4,19 @@ type Props = {
   background: string;
 };
 
+export const ButtonsContainer = styled.div`
+  width: 100%;
+  align-items: flex-start;
+  button {
+    margin-right: 15px;
+  }
+  span {
+    font-weight: bold;
+
+    color: green;
+  }
+`;
+
 export const Poster = styled.section<Props>`
   transition: all 0.5s;
   width: 100%;
@@ -56,6 +69,7 @@ export const WrapperInfo = styled.div`
 
 export const Title = styled.h1`
   text-shadow: 0px 3px 5px black;
+  text-transform: uppercase;
   font-size: clamp(1.5em, 2.5vw, 2.5em);
   color: red;
   text-align: left;
