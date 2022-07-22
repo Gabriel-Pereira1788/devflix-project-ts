@@ -10,9 +10,20 @@ export const Movie = styled.div`
     transform: scale(1.1);
   }
   img {
+    box-shadow: 2px 3px 10px 1px #00000073;
     border-radius: 10px;
     max-width: 300px;
     width: 100%;
     min-width: 150px;
+  }
+`;
+
+export const MoreInformations = styled.button`
+  background-color: #222222a6;
+  width: 50%;
+  cursor: pointer;
+  span {
+    color: white;
+    margin-right: 5px;
   }
 `;

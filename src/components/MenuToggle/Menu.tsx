@@ -51,12 +51,12 @@ const Menu = ({ setMenuToggleOn }: Props) => {
           <>
             <li>
               <NavLink to="/login" onClick={() => setMenuToggleOn(false)}>
-                Login
+                Entrar
               </NavLink>
             </li>
             <li>
               <NavLink to="/register" onClick={() => setMenuToggleOn(false)}>
-                Register
+                Registrar-se
               </NavLink>
             </li>
           </>

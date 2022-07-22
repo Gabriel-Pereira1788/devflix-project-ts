@@ -1,16 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { db } from "../firebase/firebase";
-import {
-  collection,
-  query,
-  orderBy,
-  onSnapshot,
-  where,
-  QuerySnapshot,
-} from "firebase/firestore";
-
-import { IDocument, IAction } from "../interfaces/IDataBase";
+import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 
 export const useFetchDocuments = (
   docCollection: string,
@@ -18,7 +9,7 @@ export const useFetchDocuments = (
   uid = null
 ) => {
   const [documents, setDocuments] = useState<any>();
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const [cancelled, setCancelled] = useState<boolean>(false);
@@ -47,7 +38,7 @@ export const useFetchDocuments = (
         setLoading(false);
       } catch (error: any) {
         console.log(error.message);
-
+        setError(error.message);
         setLoading(false);
       }
     }

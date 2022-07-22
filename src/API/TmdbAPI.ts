@@ -2,8 +2,6 @@ import { IDataMovie } from "../interfaces/IApi";
 
 const KEY: string = process.env.REACT_APP_TMDB_KEY!;
 const API_URL_BASE: string = "https://api.themoviedb.org/3";
-const example: string =
-  "https://api.themoviedb.org/3/discover/movie?api_key=caafc650f33fc68a6f16bf46a5c6ee13&language=pt-BR&with_genres=27";
 
 const fetchData = async (url: string) => {
   try {

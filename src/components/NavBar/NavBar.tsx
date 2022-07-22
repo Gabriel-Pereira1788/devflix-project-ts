@@ -37,10 +37,10 @@ const NavBar = ({ setModalUserOn, setMenuToggleOn }: Props) => {
         ) : (
           <>
             <li>
-              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/login">Entrar</NavLink>
             </li>
             <li>
-              <NavLink to="/register">Register</NavLink>
+              <NavLink to="/register">Registrar-se</NavLink>
             </li>
           </>
         )}

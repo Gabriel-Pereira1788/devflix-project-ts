@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Container } from "./GlobalStyles";
 //pages
 import About from "./pages/About/About";
@@ -38,11 +38,17 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/series" element={<Series />} />
           <Route path="/about" element={<About />} />
-          <Route path="/login" element={!user ? <Login /> : <Home />} />
-          <Route path="/register" element={!user ? <Register /> : <Home />} />
+          <Route
+            path="/login"
+            element={!user ? <Login /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/register"
+            element={!user ? <Register /> : <Navigate to="/" />}
+          />
           <Route
             path="/:media/:id"
-            element={user ? <SingleMedia /> : <Login />}
+            element={user ? <SingleMedia /> : <Navigate to="/login" />}
           />
         </Routes>
       </BrowserRouter>

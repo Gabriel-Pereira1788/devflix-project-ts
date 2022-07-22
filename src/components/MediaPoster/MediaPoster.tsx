@@ -36,10 +36,7 @@ const MoviePoster = ({
         <article>
           <Title>{title ? title : name}</Title>
           <Overview>{formatMaxLetters(overview, 450)}</Overview>
-          <ButtonsContainer>
-            {children}
-            <span>{vote_average}</span>
-          </ButtonsContainer>
+          <ButtonsContainer>{children}</ButtonsContainer>
         </article>
       </WrapperInfo>
     </Poster>

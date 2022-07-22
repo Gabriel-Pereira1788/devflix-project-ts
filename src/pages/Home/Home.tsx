@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 //context
 import { useAuthContext } from "../../contexts/AuthContext";
 //styles
-import { Movie } from "./styles";
+import { Movie, MoreInformations } from "./styles";
 import { Container } from "../../GlobalStyles";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -12,8 +12,11 @@ import MoviePoster from "../../components/MediaPoster/MediaPoster";
 import Loading from "../../components/Loading/Loading";
 //interface
 import { IDataMovie, ITmdb } from "../../interfaces/IApi";
-import NavCategories from "./NavCategories/NavCategories";
-
+import NavCategories from "../../components/NavCategories/NavCategories";
+//icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+//responsivity carousel
 const responsive = {
   0: { items: 2 },
   650: { items: 3 },
@@ -53,11 +56,20 @@ const Home = () => {
           vote_average={moviePoster.vote_average}
         >
           <Link to={`/${"Movie"}/${moviePoster.id}`}>
-            <button>resenhas</button>
+            <MoreInformations>
+              <span>mais informações</span>
+              <FontAwesomeIcon icon={faCircleExclamation} />
+            </MoreInformations>
           </Link>
         </MoviePoster>
       )}
-      <NavCategories setMoviesByCategory={setMoviesByCategory} />
+      {dataList?.moviesList && (
+        <NavCategories
+          setMediasByCategory={setMoviesByCategory}
+          mediaList={dataList.moviesList}
+          randomCategory={moviesByCategory.identify}
+        />
+      )}
       <AliceCarousel responsive={responsive} infinite={true}>
         {moviesByCategory &&
           moviesByCategory.list.results.map((movie, index) => (

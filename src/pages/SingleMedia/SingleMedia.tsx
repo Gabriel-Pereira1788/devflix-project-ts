@@ -15,10 +15,13 @@ import { IDocument } from "../../interfaces/IDataBase";
 
 import { useEffect, useState } from "react";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
+import Loading from "../../components/Loading/Loading";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const SingleMedia = () => {
   const { id, media } = useParams();
-
+  const { user } = useAuthContext();
+  const loadingUser: boolean = user === undefined;
   const URL_DATA: string = `https://api.themoviedb.org/3/${media?.toLowerCase()}/${id}?api_key=${
     process.env.REACT_APP_TMDB_KEY
   }&language=pt-BR`;
@@ -40,6 +43,9 @@ const SingleMedia = () => {
     }
   }, [mediaReview]);
 
+  if (loadingUser || !mediaData?.backdrop_path) {
+    return <Loading />;
+  }
   return (
     <Container FlexContent="center" style={{ position: "absolute" }}>
       {mediaData && (

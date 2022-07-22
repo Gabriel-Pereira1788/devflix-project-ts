@@ -14,19 +14,19 @@ type Props = {
 
 const NewReview = ({ media_id }: Props) => {
   const { user } = useAuthContext();
-  const [reviewText, setReviewText] = useState<string>("");
+  const [commentText, setCommentText] = useState<string>("");
   const [error, setError] = useState<string>();
 
   const { insertDocument, response } = useInsertData("comments");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(reviewText);
+    console.log(commentText);
 
     setError("");
 
     insertDocument({
-      content: reviewText,
+      content: commentText,
       uid: user!.uid,
       author: user!.displayName,
       media_id: media_id,
@@ -42,9 +42,9 @@ const NewReview = ({ media_id }: Props) => {
       <form onSubmit={handleSubmit}>
         <TextArea
           placeholder="Conte sua opinião sobre a obra ..."
-          onChange={(e) => setReviewText(e.target.value)}
+          onChange={(e) => setCommentText(e.target.value)}
           required
-          value={reviewText}
+          value={commentText}
         />
         {!response.loading && (
           <button>

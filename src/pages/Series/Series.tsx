@@ -3,16 +3,19 @@ import { Link } from "react-router-dom";
 //context
 import { useAuthContext } from "../../contexts/AuthContext";
 //styles
-import { Serie } from "./styles";
+import { Serie, MoreInformations } from "./styles";
 import { Container } from "../../GlobalStyles";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 //components
 import SeriePoster from "../../components/MediaPoster/MediaPoster";
 import Loading from "../../components/Loading/Loading";
+import NavCategories from "../../components/NavCategories/NavCategories";
 //interface
 import { IDataMovie, ITmdb } from "../../interfaces/IApi";
-import NavCategories from "./NavCategories/NavCategories";
+//icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 const responsive = {
   0: { items: 2 },
@@ -49,11 +52,20 @@ const Series = () => {
           vote_average={seriePoster.vote_average}
         >
           <Link to={`/${"Tv"}/${seriePoster.id}`}>
-            <button>resenhas</button>
+            <MoreInformations>
+              <span>mais informações</span>
+              <FontAwesomeIcon icon={faCircleExclamation} />
+            </MoreInformations>
           </Link>
         </SeriePoster>
       )}
-      <NavCategories setMoviesByCategory={setSeriesByCategory} />
+      {dataList?.seriesList && (
+        <NavCategories
+          setMediasByCategory={setSeriesByCategory}
+          mediaList={dataList.seriesList}
+          randomCategory={seriesByCategory.identify}
+        />
+      )}
       <AliceCarousel responsive={responsive} infinite={true}>
         {seriesByCategory &&
           seriesByCategory.list.results.map((movie, index) => (

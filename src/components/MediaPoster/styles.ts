@@ -12,8 +12,6 @@ export const ButtonsContainer = styled.div`
   }
   span {
     font-weight: bold;
-
-    color: green;
   }
 `;
 
@@ -45,9 +43,9 @@ export const WrapperInfo = styled.div`
   align-items: flex-start;
   justify-content: center;
   background-image: linear-gradient(
-    to top,
+    to right,
     #000000e6,
-    17%,
+    45%,
     #0000007a,
     75%,
     #1c1c1c00
