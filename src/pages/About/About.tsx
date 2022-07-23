@@ -9,9 +9,9 @@ const About = () => {
         <article>
           <h1>Sobre</h1>
           <p>
-            Projeto dedicado <a href=""></a> solidificar meus conhecimentos em
-            typescript e react. Autenticação do usuario e criaçao de usuario
-            feita com o firebase API consumida:TMDB
+            Projeto dedicado solidificar meus conhecimentos em typescript e
+            react. Autenticação do usuario e criaçao de usuario feita com o
+            firebase API consumida:TMDB
           </p>
         </article>
       </Container>

@@ -30,7 +30,7 @@ const Register = () => {
       setMessageError("As senhas não conferem");
     }
 
-    const res = await createUser(userRegister);
+    await createUser(userRegister);
   };
 
   useEffect(() => {

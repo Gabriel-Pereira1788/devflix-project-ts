@@ -44,7 +44,7 @@ export const useInsertData = (docCollection: string) => {
 
     try {
       const newData = { ...document, created_at: Timestamp.now() };
-      const insertedData = await addDoc(collection(db, docCollection), newData);
+      await addDoc(collection(db, docCollection), newData);
       checkCancelled({
         type: "INSERT_DOC",
       });
