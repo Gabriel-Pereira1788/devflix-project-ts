@@ -35,8 +35,6 @@ const Home = () => {
       const { randomList, randomMedia } = dataList.randomMoviesList;
       setMoviesByCategory(randomList);
       setMoviePoster(randomMedia);
-      console.log(randomList);
-      console.log(randomMedia);
     }
   }, [dataList]);
 
@@ -64,11 +62,11 @@ const Home = () => {
           </Link>
         </MoviePoster>
       )}
-      {dataList?.moviesList && (
+      {moviesByCategory.identify && dataList?.moviesList && (
         <NavCategories
           setMediasByCategory={setMoviesByCategory}
           mediaList={dataList.moviesList}
-          randomCategory={moviesByCategory?.identify}
+          randomCategory={moviesByCategory.identify}
         />
       )}
       <AliceCarousel responsive={responsive} infinite={true}>
