@@ -18,7 +18,7 @@ export const formatDate = (date: string | IUT) => {
   let dateFormat: Date;
 
   typeof date === "object"
-    ? (dateFormat = new Date(date.seconds))
+    ? (dateFormat = new Date(date.seconds * 1000))
     : (dateFormat = new Date(date));
 
   return dateFormat
