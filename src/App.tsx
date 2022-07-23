@@ -13,7 +13,7 @@ import { useAuthContext } from "./contexts/AuthContext";
 //components
 import NavBar from "./components/NavBar/NavBar";
 import Menu from "./components/MenuToggle/Menu";
-
+//components
 import Loading from "./components/Loading/Loading";
 import ModalUser from "./components/ModalUser/ModalUser";
 function App() {

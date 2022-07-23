@@ -49,7 +49,6 @@ const Series = () => {
           title={seriePoster.title}
           name={seriePoster.name}
           overview={seriePoster.overview}
-          vote_average={seriePoster.vote_average}
         >
           <Link to={`/${"Tv"}/${seriePoster.id}`}>
             <MoreInformations>

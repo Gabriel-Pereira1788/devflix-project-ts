@@ -15,15 +15,11 @@ type Props = {
 const NewReview = ({ media_id }: Props) => {
   const { user } = useAuthContext();
   const [commentText, setCommentText] = useState<string>("");
-  const [error, setError] = useState<string>();
 
   const { insertDocument, response } = useInsertData("comments");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(commentText);
-
-    setError("");
 
     insertDocument({
       content: commentText,

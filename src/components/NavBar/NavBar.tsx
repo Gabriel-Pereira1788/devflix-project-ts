@@ -1,9 +1,13 @@
 import { NavLink } from "react-router-dom";
+//context
 import { useAuthContext } from "../../contexts/AuthContext";
+//styles
 import { Nav, Title, List, Toggle } from "./styles";
 import { User } from "../../GlobalStyles";
+//icons
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
+
 type Props = {
   setModalUserOn: React.Dispatch<React.SetStateAction<boolean>>;
   setMenuToggleOn: React.Dispatch<React.SetStateAction<boolean>>;

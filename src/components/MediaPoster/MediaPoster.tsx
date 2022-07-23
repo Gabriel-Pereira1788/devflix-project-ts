@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { Link } from "react-router-dom";
 import { formatMaxLetters } from "../../utils/formatOverview";
 import {
   Poster,
@@ -15,7 +14,6 @@ type Props = {
   title: string;
   name: string;
   overview: string;
-  vote_average: number;
   children: ReactNode;
 };
 
@@ -24,7 +22,6 @@ const MoviePoster = ({
   name,
   backdrop_path,
   overview,
-  vote_average,
   children,
 }: Props) => {
   return (

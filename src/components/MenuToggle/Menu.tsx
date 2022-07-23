@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
+//context
 import { useAuthContext } from "../../contexts/AuthContext";
+//styles
 import { MenuNav, List, Button } from "./styles";
 import { User } from "../../GlobalStyles";
 //icons

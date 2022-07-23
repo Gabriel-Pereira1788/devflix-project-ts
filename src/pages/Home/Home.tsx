@@ -35,6 +35,8 @@ const Home = () => {
       const { randomList, randomMedia } = dataList.randomMoviesList;
       setMoviesByCategory(randomList);
       setMoviePoster(randomMedia);
+      console.log(randomList);
+      console.log(randomMedia);
     }
   }, [dataList]);
 
@@ -53,7 +55,6 @@ const Home = () => {
           title={moviePoster.title}
           name={moviePoster.name}
           overview={moviePoster.overview}
-          vote_average={moviePoster.vote_average}
         >
           <Link to={`/${"Movie"}/${moviePoster.id}`}>
             <MoreInformations>
@@ -67,7 +68,7 @@ const Home = () => {
         <NavCategories
           setMediasByCategory={setMoviesByCategory}
           mediaList={dataList.moviesList}
-          randomCategory={moviesByCategory.identify}
+          randomCategory={moviesByCategory?.identify}
         />
       )}
       <AliceCarousel responsive={responsive} infinite={true}>

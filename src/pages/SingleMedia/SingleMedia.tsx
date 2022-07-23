@@ -9,7 +9,6 @@ import Review from "./Review";
 //styles
 import { Wrapper, Title } from "./styles";
 //interfaces
-
 import { IContentReview } from "../../interfaces/IApi";
 import { IDocument } from "../../interfaces/IDataBase";
 
@@ -29,7 +28,7 @@ const SingleMedia = () => {
     process.env.REACT_APP_TMDB_KEY
   }&language=pt-BR&page=1`;
 
-  const { documents, loading } = useFetchDocuments("comments");
+  const { documents } = useFetchDocuments("comments");
   const { mediaData, mediaReview } = useFetch(URL_DATA, URL_REVIEW);
   const [allReviews, setNewReview] = useState<IContentReview[]>([]);
 
@@ -54,7 +53,6 @@ const SingleMedia = () => {
           title={mediaData.title}
           name={mediaData.name}
           overview={mediaData.overview}
-          vote_average={mediaData.vote_average}
         >
           <a href="#section_comment">
             <button>comentar</button>

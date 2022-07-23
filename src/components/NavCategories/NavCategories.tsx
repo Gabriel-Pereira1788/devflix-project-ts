@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { useState } from "react";
 import { IDataMovie } from "../../interfaces/IApi";
 import { Categories, List } from "./styles";
 type Props = {
@@ -42,4 +42,4 @@ function NavCategories({
   );
 }
 
-export default memo(NavCategories);
+export default NavCategories;
