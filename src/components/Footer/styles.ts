@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.footer`
-  min-height: 300px;
+  min-height: 200px;
   width: 100%;
   display: flex;
   flex-direction: column;

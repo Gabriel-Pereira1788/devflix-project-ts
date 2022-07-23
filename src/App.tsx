@@ -1,38 +1,56 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Container } from "./GlobalStyles";
 //pages
 import About from "./pages/About/About";
-import Favorites from "./pages/Favorites/Favorites";
 import Home from "./pages/Home/Home";
+import Series from "./pages/Series/Series";
 import Login from "./pages/Login/Login";
-import Movie from "./pages/Movie/Movie";
+import SingleMedia from "./pages/SingleMedia/SingleMedia";
 import Register from "./pages/Register/Register";
 //context
 import { useAuthContext } from "./contexts/AuthContext";
 //components
 import NavBar from "./components/NavBar/NavBar";
-import Footer from "./components/Footer/Footer";
-import { useEffect } from "react";
+import Menu from "./components/MenuToggle/Menu";
+//components
+import Loading from "./components/Loading/Loading";
+import ModalUser from "./components/ModalUser/ModalUser";
 function App() {
   const { user } = useAuthContext();
+  const [modalUserOn, setModalUserOn] = useState<boolean>(false);
+  const [menuToggleOn, setMenuToggleOn] = useState<boolean>(false);
+  const loadingUser: boolean = user === undefined;
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  if (loadingUser) {
+    return <Loading />;
+  }
   return (
-    <Container>
+    <Container FlexContent="space-between">
       <BrowserRouter>
-        <NavBar />
+        <NavBar
+          setModalUserOn={setModalUserOn}
+          setMenuToggleOn={setMenuToggleOn}
+        />
+        {menuToggleOn && <Menu setMenuToggleOn={setMenuToggleOn} />}
+        {modalUserOn && <ModalUser setModalUserOn={setModalUserOn} />}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/series" element={<Series />} />
           <Route path="/about" element={<About />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/movie:id" element={<Movie />} />
+          <Route
+            path="/login"
+            element={!user ? <Login /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/register"
+            element={!user ? <Register /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/:media/:id"
+            element={user ? <SingleMedia /> : <Navigate to="/login" />}
+          />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </Container>
   );

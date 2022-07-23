@@ -1,8 +1,6 @@
-import React from "react";
 import { Wrapper } from "./styles";
-type Props = {};
 
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <Wrapper>
       <p>

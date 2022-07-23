@@ -1,20 +1,18 @@
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
-
 //styles
 import { ContainerInput } from "./styles";
 import { ContainerForm } from "../../GlobalStyles";
 //interface
-import { UserData, initialValue } from "../../interfaces/UserInterface";
-
+import { IUser, initialValue } from "../../interfaces/IUser";
 //hooks
 import { useAuthentication } from "../../hooks/useAuthentication";
+//components
+import Footer from "../../components/Footer/Footer";
 
-type Props = {};
-
-const Register = (props: Props) => {
+const Register = () => {
   const { createUser, error, loading } = useAuthentication();
 
-  const [userRegister, setUserRegister] = useState<UserData>(initialValue);
+  const [userRegister, setUserRegister] = useState<IUser>(initialValue);
   const [messageError, setMessageError] = useState<string | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +31,6 @@ const Register = (props: Props) => {
     }
 
     const res = await createUser(userRegister);
-    console.log(res);
   };
 
   useEffect(() => {
@@ -43,61 +40,64 @@ const Register = (props: Props) => {
   }, [error]);
 
   return (
-    <ContainerForm>
-      <form onSubmit={handleSubmit}>
-        <h3>Cadastrar-se</h3>
-        <ContainerInput>
-          <span>Nome:</span>
-          <input
-            type="text"
-            name="displayName"
-            id="displayName"
-            placeholder="Insira seu nome"
-            onChange={handleChange}
-            required
-          />
-        </ContainerInput>
-        <ContainerInput>
-          <span>E-mail:</span>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Insira seu E-mail"
-            onChange={handleChange}
-            required
-          />
-        </ContainerInput>
-        <ContainerInput>
-          <span>Senha:</span>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Insira sua senha"
-            onChange={handleChange}
-            required
-          />
-        </ContainerInput>
-        <ContainerInput>
-          <span>Confirmar senha:</span>
-          <input
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-            placeholder="repita sua senha"
-            onChange={handleChange}
-            required
-          />
-        </ContainerInput>
-        {loading ? (
-          <button disabled>carregando...</button>
-        ) : (
-          <button>cadastrar</button>
-        )}
-        {messageError && <p>{messageError}</p>}
-      </form>
-    </ContainerForm>
+    <>
+      <ContainerForm>
+        <form onSubmit={handleSubmit}>
+          <h3>Cadastrar-se</h3>
+          <ContainerInput>
+            <span>Nome:</span>
+            <input
+              type="text"
+              name="displayName"
+              id="displayName"
+              placeholder="Insira seu nome"
+              onChange={handleChange}
+              required
+            />
+          </ContainerInput>
+          <ContainerInput>
+            <span>E-mail:</span>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Insira seu E-mail"
+              onChange={handleChange}
+              required
+            />
+          </ContainerInput>
+          <ContainerInput>
+            <span>Senha:</span>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Insira sua senha"
+              onChange={handleChange}
+              required
+            />
+          </ContainerInput>
+          <ContainerInput>
+            <span>Confirmar senha:</span>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="repita sua senha"
+              onChange={handleChange}
+              required
+            />
+          </ContainerInput>
+          {loading ? (
+            <button disabled>carregando...</button>
+          ) : (
+            <button>cadastrar</button>
+          )}
+          {messageError && <p>{messageError}</p>}
+        </form>
+      </ContainerForm>
+      <Footer />
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Movie = styled.div`
+export const Serie = styled.div`
   /* margin-top: 15%; */
   margin: 15% 20px;
   cursor: pointer;

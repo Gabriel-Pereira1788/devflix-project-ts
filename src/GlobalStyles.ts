@@ -7,14 +7,19 @@ const GlobalStyle = createGlobalStyle`
         padding:0;
         box-sizing: border-box;
     }
+    html{
+        scroll-behavior: smooth;
+    }
     body{
-        height: 100vh;
-        background-color: #000000f2;
+
+        min-height: 100vh;
+        background-color: #101010;
         padding: 0;
         margin: 0;
         font-family: "Montserrat", sans-serif;
     }
-    a{
+    li,a{
+        text-shadow: 0px 3px 4px #00000059;
         transition: all 0.3s;
         text-decoration: none;
         color: white;
@@ -22,7 +27,23 @@ const GlobalStyle = createGlobalStyle`
             color: #bbb;
         }
     }
-    h1,h2,h3,h4,p,label{
+
+    ul{
+        list-style: none;
+        li{
+        
+            text-decoration:none
+        }
+    }
+    span{
+        font-family: "Montserrat", sans-serif;
+    }
+    p{
+        line-height: 30px;
+        letter-spacing: 1px;
+        font-size: clamp(0.5em, 1.5vw, 1em);
+    }
+    h1,h2,h3,h4,p,label,li,textarea{
         color: #fff;
         font-family: "Montserrat", sans-serif;
     }
@@ -71,21 +92,48 @@ const GlobalStyle = createGlobalStyle`
     
     font-family: "Montserrat", sans-serif;
     }
+        button{
+            background-color: #850000;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 120px;
+            font-weight: bold;
+            border: none;
+            padding: 10px 15px;
+            font-size: clamp(0.5em,1.5vw,1em);
+            text-transform: uppercase;
+            &:hover{
+                transition: all 0.4s;
+                background-color: red;
+                color: #fff;
+            }
+            &:disabled{
+                background-color: #aaa;
+            }
+        }
+    
 
 `;
 
 export default GlobalStyle;
 
-export const Container = styled.main`
+type PropsContainer = {
+  FlexContent: string;
+};
+
+export const Container = styled.main<PropsContainer>`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${(props) => props.FlexContent};
 `;
 
 export const ContainerForm = styled.section`
+  padding: 25px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -98,5 +146,22 @@ export const ContainerForm = styled.section`
     background-color: #fd4949c9;
     color: white;
     text-align: center;
+  }
+`;
+
+export const User = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s;
+  span {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #fff;
+  }
+
+  &:hover {
+    color: red;
   }
 `;

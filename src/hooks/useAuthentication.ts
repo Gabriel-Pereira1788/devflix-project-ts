@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 
 //interface
-import { UserData } from "../interfaces/UserInterface";
+import { IUser } from "../interfaces/IUser";
 
 export const useAuthentication = () => {
   const [error, setError] = useState<string | null>(null);
@@ -30,7 +30,7 @@ export const useAuthentication = () => {
     }
   }
 
-  const createUser = async (data: UserData) => {
+  const createUser = async (data: IUser) => {
     checkCancelled();
 
     setError(null);
@@ -58,9 +58,38 @@ export const useAuthentication = () => {
     }
   };
 
+  const signOutAccount = () => {
+    checkCancelled();
+
+    signOut(auth);
+  };
+
+  const loginAccount = async (data: IUser) => {
+    checkCancelled();
+    setLoading(true);
+    setError(null);
+
+    try {
+      await signInWithEmailAndPassword(auth, data!.email, data!.password);
+      setLoading(false);
+      return;
+    } catch (error: any) {
+      console.log(error.message);
+
+      let SystemError: string[];
+
+      SystemError = Object.entries(ERRORS_MESSAGES).find((msg) =>
+        error.message.includes(msg[0])
+      )!;
+
+      setError(SystemError[1]);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     return () => setCancelled(true);
   }, []);
 
-  return { auth, createUser, error, loading };
+  return { auth, createUser, error, loading, signOutAccount, loginAccount };
 };

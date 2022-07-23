@@ -1,8 +1,20 @@
 import { NavLink } from "react-router-dom";
-import { Nav, Title, List } from "./styles";
-type Props = {};
+//context
+import { useAuthContext } from "../../contexts/AuthContext";
+//styles
+import { Nav, Title, List, Toggle } from "./styles";
+import { User } from "../../GlobalStyles";
+//icons
+import PersonIcon from "@mui/icons-material/Person";
+import MenuIcon from "@mui/icons-material/Menu";
 
-const NavBar = (props: Props) => {
+type Props = {
+  setModalUserOn: React.Dispatch<React.SetStateAction<boolean>>;
+  setMenuToggleOn: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const NavBar = ({ setModalUserOn, setMenuToggleOn }: Props) => {
+  const { user } = useAuthContext();
   return (
     <Nav>
       <Title>
@@ -11,18 +23,35 @@ const NavBar = (props: Props) => {
 
       <List>
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">Filmes</NavLink>
         </li>
         <li>
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/series">Series</NavLink>
         </li>
         <li>
-          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/about">Sobre</NavLink>
         </li>
-        <li>
-          <NavLink to="/register">Register</NavLink>
-        </li>
+        {user ? (
+          <>
+            <User onClick={() => setModalUserOn(true)}>
+              <span>{user.displayName}</span>
+              <PersonIcon />
+            </User>
+          </>
+        ) : (
+          <>
+            <li>
+              <NavLink to="/login">Entrar</NavLink>
+            </li>
+            <li>
+              <NavLink to="/register">Registrar-se</NavLink>
+            </li>
+          </>
+        )}
       </List>
+      <Toggle onClick={() => setMenuToggleOn(true)}>
+        <MenuIcon />
+      </Toggle>
     </Nav>
   );
 };
