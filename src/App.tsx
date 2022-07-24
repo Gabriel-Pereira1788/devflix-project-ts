@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Container } from "./GlobalStyles";
 //pages
 import About from "./pages/About/About";
@@ -27,7 +27,7 @@ function App() {
   }
   return (
     <Container FlexContent="space-between">
-      <BrowserRouter>
+      <HashRouter>
         <NavBar
           setModalUserOn={setModalUserOn}
           setMenuToggleOn={setMenuToggleOn}
@@ -51,7 +51,7 @@ function App() {
             element={user ? <SingleMedia /> : <Navigate to="/login" />}
           />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </Container>
   );
 }
