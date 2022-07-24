@@ -46,7 +46,7 @@ const SingleMedia = () => {
     return <Loading />;
   }
   return (
-    <Container FlexContent="center" style={{ position: "absolute" }}>
+    <Container FlexContent="space-between" style={{ position: "absolute" }}>
       {mediaData && (
         <MediaPoster
           backdrop_path={mediaData.backdrop_path}

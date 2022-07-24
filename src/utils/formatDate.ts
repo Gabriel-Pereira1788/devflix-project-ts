@@ -15,10 +15,11 @@ interface IUT {
   seconds: number;
 }
 export const formatDate = (date: string | IUT) => {
+  const MILISECONDS_IN_SECONDS = 1000;
   let dateFormat: Date;
 
   typeof date === "object"
-    ? (dateFormat = new Date(date.seconds * 1000))
+    ? (dateFormat = new Date(date.seconds * MILISECONDS_IN_SECONDS))
     : (dateFormat = new Date(date));
 
   return dateFormat

@@ -1,7 +1,7 @@
 import {
   createContext,
-  useState,
   useEffect,
+  useReducer,
   ReactNode,
   useContext,
 } from "react";
@@ -21,21 +21,52 @@ type Props = {
   children: ReactNode;
 };
 
-export const AuthContext = createContext<IContext>(initialValueContext);
+type State = {
+  user: User | null;
+  dataList: IData_List;
+};
 
-const AuthContextProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<User | null>(null);
-  const { auth, loading } = useAuthentication();
-  const [dataList, setDataList] = useState<IData_List>({
+type Action =
+  | { type: "INSERT_USER"; user: User | null }
+  | { type: "INSERT_LIST"; list: IData_List };
+
+const initialValueStates = {
+  user: null,
+  dataList: {
     moviesList: [],
     seriesList: [],
     randomMoviesList: null,
     randomSeriesList: null,
-  });
+  },
+};
+
+const reducer = (state: State, action: Action) => {
+  switch (action.type) {
+    case "INSERT_USER":
+      return {
+        ...state,
+        user: action.user,
+      };
+    case "INSERT_LIST":
+      return {
+        ...state,
+        dataList: action.list,
+      };
+  }
+};
+
+export const AuthContext = createContext<IContext>(initialValueContext);
+
+const AuthContextProvider = ({ children }: Props) => {
+  const { auth, loading } = useAuthentication();
+  const [{ user, dataList }, dispatch] = useReducer(
+    reducer,
+    initialValueStates
+  );
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      setUser(user);
+      dispatch({ type: "INSERT_USER", user: user });
     });
   }, [auth]);
 
@@ -48,8 +79,7 @@ const AuthContextProvider = ({ children }: Props) => {
         const randomMoviesList = randomItem(responseMovies);
         const randomSeriesList = randomItem(responseSeries);
 
-        setDataList((prevState) => ({
-          ...prevState,
+        const DATA_LIST: IData_List = {
           moviesList: responseMovies,
           seriesList: responseSeries,
           randomMoviesList: {
@@ -60,7 +90,9 @@ const AuthContextProvider = ({ children }: Props) => {
             randomList: randomSeriesList,
             randomMedia: randomItem(randomSeriesList.list.results),
           },
-        }));
+        };
+
+        dispatch({ type: "INSERT_LIST", list: DATA_LIST });
       }
     };
 

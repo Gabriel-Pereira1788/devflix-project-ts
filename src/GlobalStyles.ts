@@ -63,11 +63,12 @@ const GlobalStyle = createGlobalStyle`
             text-align: center;
             cursor: pointer;
             border-radius: 10px;
-            width: 120px;
+            width: 140px;
             font-weight: bold;
             border: none;
             padding: 10px 15px;
             font-size: 1em;
+            text-align: center;
             &:hover{
                 transition: all 0.4s;
                 background-color: red;

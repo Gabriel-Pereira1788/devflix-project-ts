@@ -33,7 +33,7 @@ export const List = styled.ul`
   li {
     display: block;
     color: white;
-    margin: 0em 2em;
+    margin: 0em 1.5em;
     font-weight: bold;
     .active {
       color: ${primaryColor};
