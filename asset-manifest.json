@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/devflix-project-ts/static/css/main.f32e9301.css",
-    "main.js": "/devflix-project-ts/static/js/main.2efaecd2.js",
+    "main.js": "/devflix-project-ts/static/js/main.abc45c1b.js",
     "index.html": "/devflix-project-ts/index.html",
     "main.f32e9301.css.map": "/devflix-project-ts/static/css/main.f32e9301.css.map",
-    "main.2efaecd2.js.map": "/devflix-project-ts/static/js/main.2efaecd2.js.map"
+    "main.abc45c1b.js.map": "/devflix-project-ts/static/js/main.abc45c1b.js.map"
   },
   "entrypoints": [
     "static/css/main.f32e9301.css",
-    "static/js/main.2efaecd2.js"
+    "static/js/main.abc45c1b.js"
   ]
 }
