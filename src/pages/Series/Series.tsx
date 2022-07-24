@@ -69,7 +69,7 @@ const Series = () => {
         {seriesByCategory &&
           seriesByCategory.list.results.map((movie, index) => (
             <Serie key={index} onClick={() => setSeriePoster(movie)}>
-              <a href="/devflix-project-ts/#main_poster">
+              <a href="/#main_poster">
                 <img
                   src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                   alt=""
