@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 //context
 import { useAuthContext } from "../../contexts/AuthContext";
 //styles
@@ -73,12 +74,12 @@ const Home = () => {
         {moviesByCategory &&
           moviesByCategory.list.results.map((movie, index) => (
             <Movie key={index} onClick={() => setMoviePoster(movie)}>
-              <a href="devflix-project-ts/#/#main_poster">
+              <HashLink to="#main_poster">
                 <img
                   src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                   alt=""
                 />
-              </a>
+              </HashLink>
             </Movie>
           ))}
       </AliceCarousel>
