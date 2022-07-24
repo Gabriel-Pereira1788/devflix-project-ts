@@ -73,7 +73,7 @@ const Home = () => {
         {moviesByCategory &&
           moviesByCategory.list.results.map((movie, index) => (
             <Movie key={index} onClick={() => setMoviePoster(movie)}>
-              <a href="#main_poster">
+              <a href="/devflix-project-ts/#main_poster">
                 <img
                   src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                   alt=""
