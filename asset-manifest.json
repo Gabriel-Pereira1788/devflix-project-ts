@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/devflix-project-ts/static/css/main.f32e9301.css",
+    "main.js": "/devflix-project-ts/static/js/main.2efaecd2.js",
+    "index.html": "/devflix-project-ts/index.html",
+    "main.f32e9301.css.map": "/devflix-project-ts/static/css/main.f32e9301.css.map",
+    "main.2efaecd2.js.map": "/devflix-project-ts/static/js/main.2efaecd2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f32e9301.css",
+    "static/js/main.2efaecd2.js"
+  ]
+}
